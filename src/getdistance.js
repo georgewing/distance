@@ -1,3 +1,14 @@
+(function(root, factory) {
+    if (typeof define === 'function' && define.amd) {
+        // AMD
+        define(['getDistance'], factory);
+    } else if (typeof exports === 'object') {
+        // Node, CommonJS
+        module.exports = factory(require('getDistance'));
+    } else {
+        root.returnExports = factory(root.getDistance);
+    }
+}(this, function(window) {
     function getDistance(posObj) {
         var myPos = posObj.myPos;
         var cinemaPos = posObj.cinemaPos;
@@ -32,4 +43,5 @@
     function toRadians(degree) {
         return degree * Math.PI / 180;
     }
-
+    return getDistance;
+}));
